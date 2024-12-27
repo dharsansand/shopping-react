@@ -1,12 +1,22 @@
 const productmodel = require('../models/productModel');
 /// get product API = http://localhost:5000/api/products  
 exports.getproduts = async (req, res) => {
-    const product = await productmodel.find({});
+
+  
+
+    const cd = req.query.keyword ? {
+        name: { 
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {};
+    
+    const products = await productmodel.find(cd);
     res.json({
         success: true,
-       product,
+        products,
     });
-};
+}    
 
  
 /// get single  API = http://localhost:5000/api/products/:152

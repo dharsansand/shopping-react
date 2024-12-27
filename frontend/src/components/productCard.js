@@ -1,4 +1,7 @@
+import  {Link} from 'react-router-dom'
+
 export default function ProductCard ({product}){
+
     return  <div className="col-sm-12 col-md-6 col-lg-3 my-3">
     <div className="card p-3 rounded">
       <img
@@ -15,7 +18,7 @@ export default function ProductCard ({product}){
           </div>
         </div>
         <p className="card-text">${product.price}</p>
-        <a href="#" id="view_btn" className="btn btn-block">View Details</a>
+        <Link to={"/product/"+product._id} id="view_btn" className="btn btn-block">View Details</Link>
       </div>
     </div>
   </div>
