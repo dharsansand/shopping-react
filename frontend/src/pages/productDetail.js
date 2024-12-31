@@ -1,5 +1,6 @@
 import { useState ,useEffect} from "react"
 import { useParams } from "react-router-dom"
+import { toast } from "react-toastify";
 export default function ProductDetail ({cartItems,setCartItems}){
 const [product,setproduct]=useState(null)
 const [qty,setqty]=useState(1);
@@ -18,11 +19,32 @@ const [qty,setqty]=useState(1);
         if (!itemExist) {
             const newItem = {product, qty};
             setCartItems((state) => [...state, newItem]);
+            toast.success("Cart item added succesfully!!!")
 
   }
   
 
  }
+
+
+ function decreaseqty(){
+    if(qty>1){
+        setqty((state)=>state-1);
+
+    }
+
+  
+ }
+ function increaseqty(){
+    if(product.stock==qty){
+        return;
+
+    }
+    setqty((state)=> state +1);
+ }
+
+
+
 
     return product && <div className="container container-fluid">
     <div className="row f-flex justify-content-around">
@@ -45,13 +67,13 @@ const [qty,setqty]=useState(1);
 
             <p id="product_price">${product.price}</p>
             <div className="stockCounter d-inline">
-                <span className="btn btn-danger minus">-</span>
+                <span className="btn btn-danger minus" onClick={decreaseqty}>-</span>
 
                 <input type="number" className="form-control count d-inline" value={qty} readOnly />
 
-                <span className="btn btn-primary plus">+</span>
+                <span className="btn btn-primary plus" onClick={increaseqty}>+</span>
             </div>
-             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" onClick={addToCart}>Add to Cart</button>
+             <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" onClick={addToCart} disabled={product.stock==0}>Add to Cart</button>
 
             <hr/>
 
