@@ -7,10 +7,16 @@ export default function Home() {
 const[searchParams,setsearchParams]=useSearchParams();
 
 
- useEffect(()=>{
-  fetch(process.env.REACT_APP_API_URL +'/products?'+searchParams).then(res => res.json()).then(res=>setproduct(res.products))
+useEffect(() => {
+  const apiUrl = process.env.REACT_APP_API_URL + '/products?' + searchParams;
+  console.log('Fetching from:', apiUrl); // Log the URL to check if it's correct
+  fetch(apiUrl)
+    .then((res) => res.json())
+    .then((res) => setproduct(res.products))
+    .catch((error) => console.error('Error fetching products:', error));
+}, [searchParams]);
 
- },[searchParams])
+
   return (
     <Fragment>
       <h1 id="products_heading">Latest Products</h1>
