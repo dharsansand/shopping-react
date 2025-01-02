@@ -12,8 +12,12 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // For parsing application/json
-app.use(cors());  // Enable Cross-Origin Requests
-
+app.use(cors({
+    origin:[""],
+    methods:["POST","GET"],
+    credentials:true
+}));  // Enable Cross-Origin Requests
+app.options("*",cors());
 // MongoDB connection function with async/await
 const connectDatabase = async () => {
   try {
