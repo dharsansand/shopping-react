@@ -9,7 +9,7 @@ const[searchParams,setsearchParams]=useSearchParams();
 
 useEffect(() => {
   const apiUrl = process.env.REACT_APP_API_URL + '/products?' + searchParams;
-  console.log('Fetching from:', apiUrl); // Log the URL to check if it's correct
+  console.log('Fetching from:', apiUrl); 
   fetch(apiUrl)
     .then((res) => res.json())
     .then((res) => setproduct(res.products))

@@ -13,12 +13,12 @@ const app = express();
 // Middleware
 app.use(express.json()); // For parsing application/json
 app.use(cors({
-    origin:["https://shopping-react-pink.vercel.app/"],
+    origin:["https://shopping-react-pink.vercel.app/","http://localhost:3000"],
     methods:["POST","GET"],
     credentials:true
 }));  // Enable Cross-Origin Requests
 app.options("*",cors());
-// MongoDB connection function with async/await
+// MongoDB connection function with async/awaits
 const connectDatabase = async () => {
   try {
     const uri = process.env.DB_URL;
