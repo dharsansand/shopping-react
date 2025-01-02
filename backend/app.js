@@ -13,7 +13,7 @@ const app = express();
 // Middleware
 app.use(express.json()); // For parsing application/json
 app.use(cors({
-    origin:[""],
+    origin:["https://shopping-react-pink.vercel.app/"],
     methods:["POST","GET"],
     credentials:true
 }));  // Enable Cross-Origin Requests
